@@ -1,0 +1,128 @@
+@import 'variables';
+
+.outer-container {
+  background-color: white;
+}
+
+.header-container {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #E0E0E0;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.625rem;
+  overflow: hidden;
+}
+
+.header-content {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.625rem;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  height: auto;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.header-group {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.responsive-container {
+  width: 100%;
+  max-width: $max-width;
+  margin: 0 auto;
+}
+
+.icon-container {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  color: #1B1B1B;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.menu-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: 0.375rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  box-sizing: border-box;
+}
+
+.menu-item {
+  height: 46px;
+  border-left: 1px solid #E0E0E0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  padding: 0 1rem;
+}
+
+.menu-item.selected {
+  background: rgba(51, 103, 214, 0.12);
+}
+
+.menu-text {
+  color: #3367D6;
+  font-size: 0.875rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+@media screen and (max-width: 768px) {
+  .header-group {
+    width: 100%;
+    gap: 0.3125rem;
+  }
+
+  .menu-item {
+    width: auto;
+    padding: 0 0.625rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .title {
+    font-size: 0.875rem;
+  }
+
+  .menu-item {
+    padding: 0 0.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 0.3125rem;
+}

@@ -1,0 +1,82 @@
+<div class="folder-sync-container">
+    <div class="folder-sync-header">
+        <div class="folder-sync-title-wrapper">
+            <h3 class="folder-sync-title">Sincronizacion carpetas con la IA</h3>
+        </div>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button> 
+          
+          <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="changeAccount()">
+                <span>Cambiar cuenta</span>
+              </button>
+              <button mat-menu-item (click)="logout()">
+                <span>Cerrar sesión</span>
+              </button>
+          </mat-menu>
+    </div>
+    <search></search>
+    <div class="folder-sync-content">
+        <h3 class="folder-sync-section-title">Sincronizado</h3>
+        <div class="folder-sync-item">
+            <div class="folder-sync-item-info">
+                <div class="folder-sync-item-content">
+                    <img src="/assets/svg/folder-item-icon.svg" alt="Folder Icon" class="folder-sync-icon" />
+                    <div class="folder-sync-details">
+                        <span class="folder-sync-name">Gas</span>
+                        <span class="folder-sync-status">100% Completado</span>
+                    </div>
+                </div>
+                <button class="folder-sync-close-btn" aria-label="Remove" (click)="closed()">
+                    ✖
+                </button>
+            </div>
+            <div class="folder-sync-item-progress">
+                <div class="folder-sync-progress-bar"></div>
+            </div>
+        </div>
+        <div class="folder-sync-item">
+            <div class="folder-sync-item-info">
+                <div class="folder-sync-item-content">
+                    <img src="/assets/svg/folder-item-icon.svg" alt="Folder Icon" class="folder-sync-icon" />
+                    <div class="folder-sync-details">
+                        <span class="folder-sync-name">Gas</span>
+                        <span class="folder-sync-status">100% Completado</span>
+                    </div>
+                </div>
+                <button class="folder-sync-close-btn" aria-label="Remove">
+                    ✖
+                </button>
+            </div>
+            <div class="folder-sync-item-progress">
+                <div class="folder-sync-progress-bar"></div>
+            </div>
+        </div>
+
+        <!-- Google Drive section -->
+         @if (config && config.items.length > 0) {
+             <div class="folder-sync-google-drive">
+                <h3 class="folder-sync-section-title">My Google Drive</h3>
+                <ul class="folder-sync-google-drive-list">
+                    @for (folder of config.items; track $index) {
+                        <li>
+                            <div class="folder-sync-google-drive-item">
+                                <div class="folder-sync-google-item-details">
+                                    <img src="/assets/svg/folder-item-icon.svg" alt="Folder Icon" class="folder-sync-icon" />
+                                    <span class="folder-sync-name">{{folder.name}}</span>
+                                </div>
+                                <toggle (toggledEmitter)="onToggled($event, folder.id)"></toggle>
+                            </div>
+                        </li>
+                    }
+                </ul>
+             </div>
+         }
+    </div>
+    <div class="folder-sync-footer">
+        <div class="folder-sync-button-wrapper">
+            <button class="folder-sync-button" (click)="sync()">Sync folder</button>
+        </div>
+    </div>
+</div>

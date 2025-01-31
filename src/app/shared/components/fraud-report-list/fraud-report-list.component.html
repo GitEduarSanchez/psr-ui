@@ -1,0 +1,106 @@
+<div class="search-container">
+  <input type="text" class="search-input" placeholder="{{ translations?.name || 'Name' }}"
+         [(ngModel)]="searchTerm" (input)="filterDevices()"/>
+</div>
+
+<div class="time-selector">
+  <div class="time-item" (click)="selectTime('all')" [class.selected]="selectedTime === 'all'">
+    <img *ngIf="selectedTime === 'all'" [src]="timeIcons['all']" alt="1 hour icon" class="time-icon"/>
+    {{ translations?.all || 'All' }}
+  </div>
+  <div class="time-item" (click)="selectTime('1 hour')" [class.selected]="selectedTime === '1 hour'">
+    <img *ngIf="selectedTime === '1 hour'" [src]="timeIcons['1 hour']" alt="1 hour icon" class="time-icon"/>
+    1 {{ translations?.hour?.toLowerCase() || 'hour' }}
+  </div>
+  <div class="time-item" (click)="selectTime('6 hours')" [class.selected]="selectedTime === '6 hours'">
+    <img *ngIf="selectedTime === '6 hours'" [src]="timeIcons['6 hours']" alt="6 hours icon"
+         class="time-icon"/>
+    6 {{ translations?.hours?.toLowerCase() || 'hours' }}
+  </div>
+  <div class="time-item" (click)="selectTime('1 day')" [class.selected]="selectedTime === '1 day'">
+    <img *ngIf="selectedTime === '1 day'" [src]="timeIcons['1 day']" alt="1 day icon" class="time-icon"/>
+    1 {{ translations?.day?.toLowerCase() || 'day' }}
+  </div>
+  <div class="time-item" (click)="selectTime('7 days')" [class.selected]="selectedTime === '7 days'">
+    <img *ngIf="selectedTime === '7 days'" [src]="timeIcons['7 days']" alt="7 days icon" class="time-icon"/>
+    7 {{ translations?.days?.toLowerCase() || 'days' }}
+  </div>
+  <div class="time-item" (click)="selectTime('30 days')" [class.selected]="selectedTime === '30 days'">
+    <img *ngIf="selectedTime === '30 days'" [src]="timeIcons['30 days']" alt="30 days icon"
+         class="time-icon"/>
+    30 {{ translations?.days?.toLowerCase() || 'days' }}
+  </div>
+</div>
+
+<div class="table-container">
+  <table class="error-report-table">
+    <thead>
+    <tr>
+      <th class="error-title">
+        ID
+      </th>
+      <th class="name-title">
+        {{ translations?.name || 'Name' }}
+      </th>
+      <th class="address-title">
+        {{ translations?.address || 'Address' }}
+      </th>
+      <th class="latitude-title">
+        {{ translations?.latitude || 'Latitude' }}
+      </th>
+      <th class="longitude-title">
+        {{ translations?.longitude || 'Longitude' }}
+      </th>
+      <th class="first-seen-title">
+        {{ translations?.firstSeen || 'First Seen' }}
+      </th>
+      <th class="fraud-type-title">
+        {{ translations?.fraudType || 'Fraud Type' }}
+      </th>
+      <th class="notification-channel-title">
+        {{ translations?.notificationChannel || 'Notification Channel' }}
+      </th>
+      <th class="notified-number-title">
+        {{ translations?.notifiedNumber || 'Notified Number' }}
+      </th>
+      <th class="action-title">
+        {{ translations?.action || 'Action' }}
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let device of paginatedDevices">
+      <td class="error-message">
+        <div class="error-text">{{ device.id }}</div>
+      </td>
+      <td class="name">{{ device.name }}</td>
+      <td class="battery-percentage">{{ device.address }}</td>
+      <td class="latitude">{{ device.latitude }}</td>
+      <td class="longitude">{{ device.longitude }}</td>
+      <td class="first-seen">{{ formatDate(device.firstSeen) }}</td>
+      <td class="fraud-type">{{ device.fraudType }}</td>
+      <td class="notification-channel">{{ device.notificationChannel }}</td>
+      <td class="notified-number">{{ device.notifiedNumber }}</td>
+
+      <td class="action">
+        <div class="action-container">
+          <div class="action-icon-wrapper">
+            <div class="action-icon-box">
+              <img src="/assets/svg/search.svg" class="icon" alt="Search icon">
+            </div>
+            <div class="action-label">{{ translations?.view || 'View' }}</div>
+          </div>
+          <div class="action-extra-box"></div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="pagination">
+  <mat-paginator [length]="_filterFraudReports.length" [pageSize]="itemsPerPage"
+                 [pageSizeOptions]="[5, 10, 25, 100]"
+                 (page)="onPageChange($event)">
+  </mat-paginator>
+</div>

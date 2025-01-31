@@ -1,0 +1,10 @@
+<div class="poli-ia-container">
+    <div class="folder-grid">
+        @for (folder of folders; track $index) {
+            <folder
+            [config]="folder"
+            (openFolderEmmiter)="onOpenFolder($event)"
+            ></folder>
+          }
+    </div>
+</div>

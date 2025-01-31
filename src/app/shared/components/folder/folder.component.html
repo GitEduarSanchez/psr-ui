@@ -1,0 +1,36 @@
+<div class="folder" (click)="openFolder(config.id)">
+  @if (config.icon) {
+    <div class="folder-item-icon-wrapper">
+      <img class="folder-item-icon" [src]="config.icon" alt="folder icon"/>
+    </div>
+  }
+  <span class="folder-item-name ellipsis">{{config.name}}</span>
+  
+  @if (config.matMenuActions) {
+    <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()" >
+        <mat-icon>more_vert</mat-icon>
+      </button> 
+      
+      <mat-menu #menu="matMenu">
+        @if (config.matMenuActions.showRename) {
+          <button mat-menu-item (click)="rename()">
+            <span>Rename</span>
+          </button>
+        }
+        @if (config.matMenuActions.showDelete) {
+          <button mat-menu-item (click)="delete(config.id)">
+            <span>Delete</span>
+          </button>
+        }
+        @if (config.matMenuActions.showGetInfo) {
+          <button mat-menu-item (click)="rename()">
+            <span>Get more info</span>
+          </button>
+        }      
+      </mat-menu>
+  }
+
+  @if(config.secondaryIcon) {
+      <img class="folder-item-icon" [src]="config.secondaryIcon" alt="folder secondaryIcon"/>
+  }
+</div>

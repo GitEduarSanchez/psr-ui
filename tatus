@@ -1,0 +1,126 @@
+[33m43796ae[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mreleasecandidate/v1.0.0[m[33m)[m feat: Add translations for all routes and UI elements
+[33m18431fd[m Integrated chat across multiple routes and added login translations
+[33m3e79bf2[m Integrate chat component into client view and add translations for switch-control
+[33m9a94c43[m Merged PR 72: signarl
+[33m801a060[m Merged PR 72: signarl
+[33m27bfda1[m Merged PR 72: signarl
+[33m4242820[m[33m ([m[1;31morigin/feature/signalR[m[33m)[m add api gateway with signalr
+[33mca3b914[m Merge branch 'releasecandidate/v1.0.0' into feature/signalR
+[33m0760fc0[m fix logo
+[33m48c6e16[m Merged PR 71: chat poli
+[33m53cf8e1[m[33m ([m[1;31morigin/develop2[m[33m)[m Merge branch 'releasecandidate/v1.0.0' into develop2
+[33m76784d2[m poc SignalR
+[33md3b917d[m[33m ([m[1;32mdevelop2[m[33m)[m Chore: Replace suggestions API with static data
+[33mb4ebf4b[m Create chat design v1.1
+[33m4b97ed5[m Merge branch 'releasecandidate/v1.0.0' into feature/signalR
+[33mb1c8bc7[m package installs
+[33m87a26ec[m poc SignalR
+[33mf04191c[m poc SignalR
+[33ma309493[m Merge branch 'dashboardComponents' into releasecandidate/v1.0.0
+[33mbbb7af3[m[33m ([m[1;31morigin/dashboardComponents[m[33m)[m bug fixes hour in measure component and PSR logo navbar description
+[33m6924549[m Merged PR 70: change files admin dashboard
+[33m62e1ce5[m Create chat design v1.0
+[33m30dc3cf[m Merge branch 'dashboardComponents' into develop2
+[33me3103fc[m fix: resolve filter conflict
+[33m99c36a7[m[33m ([m[1;32mdashboardComponents[m[33m)[m Merge remote-tracking branch 'psr-ui/releasecandidate/v1.0.0' into dashboardComponents
+[33ma58e9f9[m added clear filter button and deleted zone input
+[33me59c3ba[m Merge branch 'develop2' of https://dev.azure.com/poliedrocloud/PSR/_git/psr-ui into develop2
+[33m5462394[m feat: Update error filtering with admitted devices and design improvements v1.1
+[33m602a2bf[m feat: Update error filtering with admitted devices and design improvements
+[33m8419876[m integration Open AI
+[33m2d328ac[m integration Open AI
+[33md6be6d6[m Merged PR 68: open ai
+[33m709aa61[m Merge remote-tracking branch 'origin/releasecandidate/v1.0.0' into OpenAI
+[33m194e3a3[m Merged PR 67: dev deybis
+[33m3e7a97c[m Merge branch 'releasecandidate/v1.0.0' into develop2
+[33m98c0f64[m Merged PR 66: dev juan paz
+[33m66c60d7[m update filterAutocomplete logic
+[33m3d29eca[m autocomplete fix repeat items
+[33m5c76175[m integration Open AI
+[33m82aac36[m autocomplete logic
+[33m7da5666[m Fix: Solucionado problema de número de teléfono en login y ajustes de estilos en dashboard
+[33mf429d82[m Merge remote-tracking branch 'origin/dashboardComponents' into develop2
+[33ma05954d[m Fix country code selection issue in login form validation
+[33m3f6b3e3[m update filtered by company mock logic
+[33m660bdeb[m API integration for Operation Dashboard Business and added translations
+[33m30072a8[m Resolve multi-address styles and translation in filters
+[33mcc0dc48[m Merge remote-tracking branch 'origin/dashboardComponents' into develop2: Add correction
+[33m91ca2bb[m Merge remote-tracking branch 'origin/dashboardComponents' into develop2
+[33mc7767d4[m Merge: Integrate changes from the branch v1.1
+[33m583c76a[m Merge: Integrate changes from the branch
+[33m9462641[m refactor measure circular progress bar
+[33m03dfa0b[m refactor nginx.conf
+[33m79a8239[m Business component
+[33m1de411b[m fixbug selected Address
+[33m82d031f[m filters component, filter pipe and fixbugs user-details
+[33m5cc9f03[m feat: add translation functionality and switch control
+[33mea6c49b[m Refactor Switch Control Component: code and design improvements
+[33m5d9a97d[m Add Switch Control Component
+[33mf3d8616[m measure colors and animation method refactor
+[33m4f281f7[m user details and user information fix bugs
+[33m41d04c7[m admin page, dashboard component update. added user details component and expansible logic
+[33me0d002e[m created admin container page, user details component, update user information layout and measure layout
+[33m27d8d84[m refactor and rename dashboard component
+[33m8a4f830[m deleted comment
+[33m2a4f340[m graph component and changing layout
+[33m96abe59[m fixbug history component data and service status
+[33m8fd8ce6[m fixbug render multi address
+[33m3c550cd[m delete unnecessary user information
+[33ma7c2c29[m fixbug
+[33mcad0ff3[m Merge branch 'dashboardComponents' into develop
+[33m451876c[m Updated translation tags v1.1
+[33m7727b00[m Updated translation tags
+[33m329262f[m feat: reload page on language selection and store selected language in localStorage
+[33m5b62829[m delete unnecessary config
+[33m76b5c8a[m multi address and multi device components, modified styles
+[33m77acfd9[m English bockup and detachable components
+[33mba10821[m storage-keys.enum
+[33m36fc7f3[m fix redirection
+[33m7e41c30[m max budget
+[33m0eafe2e[m modified uri
+[33mb02b275[m refactor pin-confirmation.component and login
+[33m401fa76[m fix bug led color
+[33m21f6efe[m change label and maxlenght
+[33mf0ab792[m fix routes
+[33m9e22a3b[m Merge remote-tracking branch 'psr-ui/develop' into dashboardComponents
+[33m48214ff[m Fix button colors and update responsive layout in SCSS
+[33m7192a54[m update navbar styles
+[33m90a504b[m deleted unnecessary css classes and modified login styles
+[33m744fefa[m Merge remote-tracking branch 'origin/dashboardComponents' into develop
+[33md797d6c[m v2.0
+[33mddc2bce[m Merge branch 'develop' of https://dev.azure.com/poliedrocloud/PSR/_git/psr-ui into develop
+[33m3d5efcd[m Rename variable 'username' to 'phone' for clarity in sending data
+[33mdb4cdb7[m replace url
+[33m3bd3ed2[m feat: Implement login form with phone number validation
+[33mdc4f279[m feat(auth): Add PIN validation and send login data to backend
+[33ma8e198d[m update history with back data
+[33md7c7312[m update components with backend data
+[33m3557fc3[m login
+[33m8c6837d[m Applying responsive in dashboard-container, measure component and history component
+[33mef32950[m pin-confirmation responsive
+[33mc0488c8[m test
+[33me000f6a[m refactor code to be more readable and added mask in pin boxes
+[33m6d84e2a[m pin confirmation styles
+[33mc02554a[m refactor styles in navbar, history and pin-confirmation components
+[33mc4f7134[m added new global styles variables and applied in measure and history components
+[33md7cc43e[m pin confirmation component layout
+[33m766dcef[m Pin confirmation initial approach
+[33m188479e[m login component and styles
+[33m075fd65[m new reusable form, register and login components. added routes for auth components
+[33me705256[m draft dialog for login
+[33mb330304[m styles fix
+[33m7c06858[m fix history paginator
+[33m7af170d[m location mock component
+[33m94a1f16[m styles in measure and history
+[33mffec5be[m service status in measure component
+[33me6e4574[m navbar component
+[33m14b0bd8[m navbar draft
+[33m7a6a64d[m Styles in measure, user information and history components
+[33m24b9b47[m draft styles in components
+[33mf14aa25[m max width in container
+[33me2e1614[m history component
+[33m987cbde[m history component draft
+[33m84d708b[m first components
+[33m08b0ff3[m user information and measure components
+[33m21d64bb[m[33m ([m[1;31morigin/release/v1.0.0[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m app creation
+[33mb7e3800[m initial commit

@@ -1,0 +1,51 @@
+@import 'variables';
+
+.history-card {
+    width: 100%;
+    padding: $padding-large;
+    border-radius: $border-radius-container;
+    min-height: 100%;
+}
+
+.history-card-title {
+    font-size: $font-size-xxl;
+    font-weight: $font-weight-semi-bold;
+    margin-bottom: $margin-medium;
+}
+
+.history-card-content {
+    display: flex;
+}
+
+.history-graph-container, .history-table-container {
+    width: 50%;
+}
+
+.mat-column-year {
+    width: 20%;
+    font-size: $font-size-lg;
+}
+.mat-column-month, .mat-column-consumption  {
+    width: 40%;
+    font-size: $font-size-lg;
+}
+
+
+@media (max-width: 768px) {
+    .history-card {
+        .history-card-header {
+            padding: 0;
+            .history-card-title {
+                font-size: $font-size-xl;
+                margin: 0;
+            }
+        }
+        .history-card-content {
+            padding: 0;
+            padding-bottom: $padding-extra-large;
+        }
+    }
+    .mat-column-year, .mat-column-month, .mat-column-consumption  {
+        font-size: $font-size-md;
+    }
+}

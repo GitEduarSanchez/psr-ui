@@ -1,0 +1,261 @@
+input {
+  box-sizing: border-box;
+}
+
+.outer-container {
+  height: 100%;
+  background-color: white;
+}
+
+.header-container {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #E0E0E0;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.625rem;
+  overflow: hidden;
+}
+
+.header-content {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.625rem;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  height: auto;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.header-group {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.responsive-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.icon-container {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.time-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.3125rem;
+}
+
+.title {
+  color: #1B1B1B;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.menu-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: 0.375rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.menu-item {
+  width: 89px;
+  height: 46px;
+  border-left: 1px solid #E0E0E0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.menu-item.selected {
+  background: rgba(51, 103, 214, 0.12);
+}
+
+.menu-text {
+  color: #3367D6;
+  font-size: 0.875rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+@media screen and (max-width: 768px) {
+  .header-group {
+    width: 100%;
+    gap: 0.3125rem;
+  }
+
+  .menu-item {
+    width: auto;
+    padding: 0 0.625rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .title {
+    font-size: 0.875rem;
+  }
+
+  .menu-item {
+    padding: 0 0.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+.search-container {
+  height: 40px;
+  position: relative;
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  border: 1px solid #80868B;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  padding: 0 0.5rem;
+  font-size: 0.875rem;
+  color: black;
+}
+
+.search-input::placeholder {
+  color: #686C71;
+  opacity: 1;
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(51, 103, 214, 0.5);
+}
+
+.time-selector {
+  position: relative;
+  margin: 1rem 1rem 0 1rem;
+}
+
+.time-item {
+  width: auto;
+  height: 20px;
+  position: relative;
+  color: black;
+  font-size: 0.875rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.3125rem;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.time-item:not(:last-child) {
+  margin-right: 0.9375rem;
+}
+
+.action-label {
+  color: blue;
+}
+
+.time-item.selected {
+  background: rgba(51, 103, 214, 0.8);
+  color: white;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 0.3125rem;
+}
+
+.time-item:hover {
+  background: rgba(51, 103, 214, 0.12);
+  color: #1B1B1B;
+}
+
+@media screen and (max-width: 768px) {
+  .time-selector {
+    width: 100%;
+  }
+
+  .time-item {
+    font-size: 0.75rem;
+  }
+}
+
+.table-container {
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+.error-report-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.error-report-table th {
+  background-color: #F5F5F5;
+  color: #707070;
+}
+
+.error-report-table th,
+.error-report-table td {
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.status-indicator {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.error-text {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}

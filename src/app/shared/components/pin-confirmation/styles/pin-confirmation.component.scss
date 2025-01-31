@@ -1,0 +1,229 @@
+@import 'pin-confirmation-vars';
+
+.pin-wrapper {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pin-content {
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $secondary-color;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-container;
+    padding: $padding-large;
+    .pin-left-arrow {
+        width: 100%;
+        display: flex;
+        justify-content: left;
+        .pin-back-button {
+            width: $pin-back-button-width;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            img {
+                width: 100%;
+            }
+        }
+    }
+    .pin-circle-container {
+        position: relative;
+        width: $pin-circle-container-size;
+        height: $pin-circle-container-size;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: $margin-large;
+        &::before {
+            content: '';
+            position: absolute;
+            width: $pin-circle-container-size-before;
+            height: $pin-circle-container-size-before;
+            border-radius: 50%;
+            background-color: $pin-circle-color-2;
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            width: $pin-circle-container-size-after;
+            height: $pin-circle-container-size-after;
+            border-radius: 50%;
+            background-color: $pin-circle-color-1;
+        }
+        .pin-inner-circle {
+            width: $pin-inner-circle-size;
+            height: $pin-inner-circle-size;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .pin-icon {
+                width: $pin-icon-size;
+                margin: $pin-icon-size;
+                z-index: 1;
+            }
+
+        }
+    }
+    .pin-title {
+        font-size: $font-size-xxxl;
+        font-weight: $font-weight-bold;
+    }
+    .pin-description {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+    }
+    .pin-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: $padding-medium;
+        .pin-box {
+            width: $pin-box-size;
+            height: $pin-box-size;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: $font-size-xxl;
+            position: relative;
+            overflow: hidden;
+            margin: $pin-box-margin;
+            border-radius: $pin-box-border-radius;
+            @include pinBoxBorder();
+            cursor: pointer;
+            font-weight: $font-weight-semi-bold;
+            color: black;
+            &.masked {
+                color: transparent;
+                text-shadow: 0 0 0 transparent;
+            }
+        }
+        .pin-box.active {
+            @include pinBoxBorder($primary-color);
+        }
+        .pin-box.error {
+            @include pinBoxBorder($error-color);
+        }
+        .pin-box::before {
+            content: '*';
+            position: absolute;
+            top: 40%;
+            color: $pin-box-text-color;
+            font-size: $font-size-xxxl;
+            pointer-events: none;
+            display: none;
+        }
+        .pin-box.masked::before {
+            display: block;
+        }
+        .pin-box.active::after {
+            content: '';
+            position: absolute;
+            width: $pin-box-active-after-width;
+            height: $pin-box-active-after-height;
+            background-color: $primary-color;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scaleY(1);
+            animation: cursor-blink 1.5s infinite;
+        }
+        .pin-box span {
+            display: inline-block;
+            animation: fadeInUp 0.3s ease-in-out;
+        }
+    }
+    .hidden-input {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        border: none;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        background: transparent;
+        z-index: -1;
+    }
+    .pin-error {
+        font-weight: $font-weight-regular;
+        font-size: $font-size-md;
+        color: $error-color;
+        visibility: hidden;
+    }
+    .pin-error.active {
+        visibility: visible;
+    }
+    .pin-text {
+        font-weight: $font-weight-regular;
+        font-size: $font-size-lg;
+    }
+    .pin-text-link {
+        margin-top: $margin-medium;
+        a {
+            font-size: $font-size-md;
+            color: $link-color
+        }
+    }
+}
+
+
+/* intermittent cursor animation */
+@keyframes cursor-blink {
+    0%, 100% {
+        height: 1.25rem;
+        transform: translate(-50%, -50%) scaleY(1);
+        opacity: 1;
+    }
+    50% {
+        height: 0;
+        transform: translate(-50%, -50%) scaleY(0);
+        opacity: 0;
+    }
+}
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(1.25rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .pin-wrapper {
+        height: 90vh;
+        overflow: hidden;
+    }
+    .pin-content {
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        height: 100%;
+        box-sizing: border-box;
+        position: relative;
+        .pin-left-arrow {
+            position: absolute;
+            top: 0;
+        }
+        .pin-text-link {
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

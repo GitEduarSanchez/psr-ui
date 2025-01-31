@@ -1,0 +1,81 @@
+<div class="form-container">
+    @if(config && config.title) {
+        <h2 class="form-title">{{config.title}}</h2>
+    }
+
+    <form [formGroup]="formGroup" class="form">
+        @for (field of config.formFields; track $index) {
+            @switch (field.type) {
+                @case (FieldTypeEnum.TextArea) {
+                    <mat-form-field class="form-field">
+                        <mat-label>{{field.label}}</mat-label>
+                        <textarea 
+                            matNativeControl
+                            [formControlName]="field.controlName"
+                            [errorStateMatcher]="customErrorStateMatcher">
+                        </textarea>
+                        <mat-error>
+                            this field is required
+                        </mat-error>
+                    </mat-form-field>
+                }
+                @case (FieldTypeEnum.Date) {
+                    <mat-form-field  class="form-field">
+                        <mat-label>{{field.label}}</mat-label>
+                        <input matInput 
+                            [type]="field.type"
+                            [formControlName]="field.controlName"
+                            [errorStateMatcher]="customErrorStateMatcher">
+                        <mat-error>
+                            this field is required
+                        </mat-error>
+                    </mat-form-field>
+                }
+                @case (FieldTypeEnum.Checkbox) {
+                    <!-- <div class="form-field checkbox-form-field">
+                        <custom-checkbox-input [formControlName]="field.controlName" [label]="field.label"></custom-checkbox-input>
+                    </div> -->
+                }
+                @case (FieldTypeEnum.File) {
+                    <div class="form-field">
+                        <mat-label> {{field.label}} </mat-label>
+                        <custom-file-input [formControlName]="field.controlName"></custom-file-input>
+                    </div>
+                }
+                @case (FieldTypeEnum.Select) {
+                    <mat-form-field  class="form-field">
+                        <mat-label>{{field.label}}</mat-label>
+                        <mat-select [formControlName]="field.controlName"
+                            [errorStateMatcher]="customErrorStateMatcher">
+                            @for (option of field.selectOptions; track $index) {
+                                <mat-option [value]="option.value"> {{option.label}} </mat-option>      
+                            }
+                        </mat-select>
+                        <mat-error>
+                            this field is required
+                        </mat-error>
+                    </mat-form-field> 
+                }
+                @default {
+                    <mat-form-field  class="form-field" appearance="outline">
+                        <mat-label>{{field.label}}</mat-label>
+                        <input matInput 
+                            [type]="field.type"
+                            [placeholder]="field.placeholder || ''" 
+                            [formControlName]="field.controlName"
+                            [errorStateMatcher]="customErrorStateMatcher">
+                        <mat-error>
+                            this field is required
+                        </mat-error>
+                    </mat-form-field>
+                }
+            }
+        }
+        <div class="form-buttons">
+            @if(config.showCancelButton) {
+                <button class="form-button-cancel" (click)="cancel()">cancel</button>
+            }
+            <button class="form-button-submit" (click)="submit()">Submit</button>
+        </div>
+    </form>
+</div>

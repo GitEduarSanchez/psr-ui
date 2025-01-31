@@ -1,0 +1,34 @@
+<navbar></navbar>
+<div class="outer-container">
+  <div class="responsive-container">
+    <location></location>
+    <div class="header-container">
+      <div class="header-content">
+        <div class="header-row">
+          <div class="header-group">
+            <div class="icon-container">
+              <img src="/assets/svg/error.svg" class="icon" alt=""/>
+            </div>
+            <div class="title">{{ translations?.errorReport || 'Error Report' }}</div>
+            <div class="menu-container">
+              <div class="menu-item" (click)="selectMenu('devices')" [ngClass]="{'selected': selectedMenu === 'devices'}">
+                <div class="menu-text">{{ translations?.devices || 'Devices' }}</div>
+              </div>
+              <div class="menu-item" (click)="selectMenu('fraudReport')" [ngClass]="{'selected': selectedMenu === 'fraudReport'}">
+                <div class="menu-text">{{ translations?.fraudReport || 'Fraud Report' }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-device-list *ngIf="selectedMenu === 'devices'" [devices]="devices"></app-device-list>
+    <app-fraud-report-list *ngIf="selectedMenu === 'fraudReport'" [fraudReports]="fraudReports"></app-fraud-report-list>
+
+  </div>
+</div>
+
+<div class="dashboard-container">
+  <app-agent></app-agent>
+</div>

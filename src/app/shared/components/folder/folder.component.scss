@@ -1,0 +1,27 @@
+@import 'variables';
+
+$folder-item-icon-wrapper-size: 2.5rem;
+
+.folder {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem $padding-medium;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    background-color: $secondary-color;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-weight: $font-weight-semi-bold;
+    font-size: $font-size-lg;
+}
+
+.folder-item-icon-wrapper {
+    width: $folder-item-icon-wrapper-size;
+    height: $folder-item-icon-wrapper-size;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #EADDFF;
+}

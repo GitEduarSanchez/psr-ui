@@ -1,0 +1,41 @@
+<div class="container-centered">
+  <div class="pin-wrapper">
+    <div class="pin-content">
+      <div class="pin-left-arrow">
+        <button class="pin-back-button" [routerLink]="'/auth/login'">
+          <img src="assets/images/left-arrow.png" alt="">
+        </button>
+      </div>
+      <div class="pin-circle-container">
+        <div class="pin-inner-circle">
+          <img class="pin-icon" src="assets/images/pin-icon.png" alt="">
+        </div>
+      </div>
+      <h2 class="pin-title">{{ translations?.confirmPin || 'Confirm your PIN' }}</h2>
+      <div class="pin-description">
+        <span class="pin-text">{{ translations?.enterCode || 'Enter the 4-digit code associated with the number'
+          }}</span>
+        <span class="pin-text">
+          <strong>{{ translations?.numberUnavailable || 'Number not available' }}</strong>
+        </span>
+      </div>
+      <!-- Pin boxes container -->
+      <div class="pin-container" (click)="focusInput()">
+        @for ( box of [1, 2, 3, 4]; track $index ) {
+        <div #pinBox class="pin-box" [ngClass]="{ 'active': isInputActive && $index === pinValue.length,
+                                     'masked': masked[$index] ,
+                                     'error': isInvalid && pinValue.length === 4 }">
+          @if ( $index < pinValue.length ) { <span class="fade-in-up"> {{pinValue[$index]}}</span>
+            }
+        </div>
+        }
+      </div>
+      <!-- PIN Input -->
+      <input #pinInput class="hidden-input" id="pinInput" type="text" maxlength="4" autocomplete="off" autocorrect="off"
+        autocapitalize="off" spellcheck="false" (input)="onInput($event)" (keydown)="onKeydown($event)"
+        (focusin)="focusInput()" (focusout)="isInputActive = false" />
+      <span class="pin-error" [ngClass]="{'active' : isInvalid && pinValue.length === 4}">{{ translations?.incorrectPin || 'Incorrect PIN. Try again' }}</span>
+      <span class="pin-text pin-text-link">{{ translations?.forgotPin || 'Forgot your PIN?' }} <a href="#">{{ translations?.resetPin || 'Click here to reset it' }}</a></span>
+    </div>
+  </div>
+</div>

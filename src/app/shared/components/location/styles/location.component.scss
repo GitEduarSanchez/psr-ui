@@ -1,0 +1,55 @@
+@import 'variables';
+
+.location-container {
+    background-color: $secondary-color;
+    border-radius: $border-radius-container;
+    padding: $padding-large;
+    border: 1px solid $border-color;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.location-operator-container {
+    padding: $padding-medium
+
+}
+.location-title {
+    margin: $margin-medium;
+    font-size: $font-size-xxl;
+    font-weight: $font-weight-semi-bold;
+    margin-bottom: $margin-extra-large;
+}
+.devices-map-title {
+    font-size: $font-size-xxl;
+    font-weight: $font-weight-semi-bold;
+}
+::ng-deep .info-window {
+    display: flex;
+    flex-wrap: wrap;
+    .info-window-item {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .info-window-item-title {
+        font-size: $font-size-xl;
+        font-weight: $font-weight-semi-bold;
+    }
+    .info-window-item-description {
+        font-size: $font-size-md;
+        color: $text-color-secondary;
+        font-weight: $font-weight-medium;
+    }
+    .info-window-image {
+        margin: 10px auto;
+        width: 50%;
+        border-radius: 5px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .location-container {
+        .location-title {
+            font-size: $font-size-xl;
+        }
+    }
+}

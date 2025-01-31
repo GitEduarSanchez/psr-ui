@@ -1,0 +1,66 @@
+
+@if (config) {
+    @switch (layoutType) {
+        @case (layoutTypeEnum.Resume) {
+            <!-- Resume template - only measure graph -->
+            <div class="progress">
+                <svg class="progress-bar progress-bar-resume" 
+                    [ngClass]="{ 'active': !isClientDashboard && config.state.state,
+                                 'inactive' : !isClientDashboard && !config.state.state
+                    }">
+                    <circle class="progress-circle" cx="75" cy="75" r="60"></circle>
+                    <circle class="progress-circle" cx="75" cy="75" r="60"></circle>
+                </svg>
+                <div class="progress-text-container">
+                    <span class="progress-title-resume"> {{config.deviceType}} </span>
+                    <span class="progress-value-resume"> {{config.reader.reader}} </span>
+                    <span class="progress-description-resume">{{ translations?.consumption || 'Consumption' }}</span>
+                </div>
+            </div>
+        }
+        @default {
+            <!-- Default Template with all information -->
+            <mat-card class="measure-card" appearance="outlined">
+                <mat-card-header class="measure-card-header">
+                    <mat-card-title class="measure-card-title">{{ translations?.lastReader || 'Last Reader' }}:</mat-card-title>
+                    <div class="service-status">
+                        <service-status [config]="config.state"></service-status>
+                    </div>
+                </mat-card-header>
+                <mat-card-content class="measure-card-content">
+                    <div class="card-content-main">
+                        <div class="progress">
+                            <svg class="progress-bar progress-bar-default"
+                                [ngClass]="{ 'active': !isClientDashboard && this.config.state.state,
+                                             'inactive' : !isClientDashboard && !this.config.state.state
+                                }">
+                                <circle class="progress-circle" cx="140" cy="140" r="130"></circle>
+                                <circle class="progress-circle" cx="140" cy="140" r="130"></circle>
+                            </svg>
+                            <div class="progress-text-container">
+                                <span class="progress-title"> {{config.deviceType}} </span>
+                                <span class="progress-value"> {{config.reader.reader}} </span>
+                                <span class="progress-description">{{ translations?.consumption || 'Consumption' }}</span>
+                            </div>
+                        </div>
+                        <div class="card-adicional-information">
+                            <div class="last-measure-container">
+                                <div class="last-measure-description">
+                                    <span class="last-measure-description-title">{{ translations?.previousReading || 'Previous Reading:' }}:</span>
+                                    <span class="last-measure-description-value">{{config.reader.lastReader}}</span>
+                                </div>
+            
+                                <div class="last-measure-date">
+                                    <span class="last-measure-description-title">{{ translations?.dateTime || 'Date/Time' }}:</span>
+                                    <span class="last-measure-description-value">{{config.reader.dateTime | date: 'dd/MM/yyyy h:mm a' }}</span>
+                                </div>
+                            </div>
+                            <img class="card-qr-image" src="{{config.qr.uri}}" width="130px" height="130px" alt="{{config.qr.code}}">
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        }
+    }
+}
+

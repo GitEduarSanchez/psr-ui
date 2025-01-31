@@ -1,0 +1,72 @@
+<div class="container-centered">
+  <div class="content">
+    <!-- Left Section: Logo and Image -->
+    <div class="content-left">
+      <div class="content-left-logo-position">
+        <img src="/assets/svg/logo_v1.svg" class="content-left-logo" alt="" />
+      </div>
+      <div class="image-container">
+        <div class="cloud-image"></div>
+      </div>
+    </div>
+
+    <!-- Right Section: Login Form -->
+    <div class="content-right">
+      <div class="content-right-position">
+        <section class="login-section">
+          <div class="login-content">
+            <h1 class="welcome-text">{{ translations?.welcomeToPSR || 'Welcome to PSR!' }}</h1>
+            <h2 class="login-text">{{ translations?.signIn || 'Sign in' }}</h2>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div class="login-form">
+                <!-- Phone Number Input -->
+                <div class="country-select-container mat-form-field">
+                  <div mat-button [matMenuTriggerFor]="countryMenu" class="country-select-button">
+                    <div class="selected-flag">
+                      <img [src]="getFlagImageUrl(selectedCountry)" alt="Flag" class="language-flag" />
+                      <mat-icon class="arrow-down">&#9662;</mat-icon>
+                    </div>
+                  </div>
+                  <mat-menu #countryMenu="matMenu">
+                    <button mat-menu-item *ngFor="let country of countries" type="button" (click)="selectCountry(country)">
+                      <img [src]="getFlagImageUrl(country.code)" alt="Flag" class="language-flag" />
+                      {{ country.name }} (+{{ country.phoneCode }})
+                    </button>
+                  </mat-menu>
+                </div>
+
+                <mat-form-field class="login-form-field" appearance="outline">
+                  <mat-label>{{ translations?.phoneNumber || 'Phone number' }}</mat-label>
+                  <input type="text" matInput formControlName="phone" [errorStateMatcher]="matcher" maxlength="10" aria-label="Phone Number" />
+                  <mat-error
+                    *ngIf="loginForm.get('phone')?.hasError('pattern') && !loginForm.get('phone')?.hasError('required')">
+                    {{ translations?.validPhoneNumber || 'Please enter a valid phone number' }}
+                  </mat-error>
+                  <mat-error *ngIf="loginForm.get('phone')?.hasError('required')">
+                     {{ translations?.thisFieldIs || 'This field is' }} <strong>{{ translations?.required || 'Required' }}</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <!-- Action buttons -->
+              <mat-card-footer class="login-form-footer">
+                <button mat-flat-button class="create-account-button" type="button" (click)="onRegister()">
+                  {{ translations?.createAccount || 'Create Account' }}
+                </button>
+                <button mat-flat-button class="login-button" type="submit">
+                  {{ translations?.continue || 'Continue' }}
+                </button>
+              </mat-card-footer>
+
+              <div class="register-prompt">
+                {{ translations?.dontHaveAccount || 'Don\'t have an account?' }}
+                <a class="sign-up-link" (click)="onLogin()">
+                  {{ translations?.signUp || 'Sign up' }}</a>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

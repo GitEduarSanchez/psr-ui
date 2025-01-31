@@ -1,0 +1,15 @@
+.mat-mdc-dialog-content {
+    max-height: 80vh;
+    padding: 0;
+}
+
+.dialog-close {
+    display: flex;
+    justify-content: end;
+}
+
+.dialog-close-button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}

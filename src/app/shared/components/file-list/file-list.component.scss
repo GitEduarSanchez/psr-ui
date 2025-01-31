@@ -1,0 +1,11 @@
+@import 'variables';
+
+
+.file-list-container {
+    padding: $padding-medium;
+}
+
+.file-list-wrapper {
+    display: flex;
+    flex-direction: column;
+}

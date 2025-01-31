@@ -1,0 +1,127 @@
+<div class="search-container">
+  <input type="text" class="search-input" placeholder="{{ translations?.deviceNumber || 'Device Number' }}"
+         [(ngModel)]="searchTerm" (input)="filterDevices()"/>
+</div>
+
+<div class="time-selector">
+  <div class="time-item" (click)="selectTime('all')" [class.selected]="selectedTime === 'all'">
+    <img *ngIf="selectedTime === 'all'" [src]="timeIcons['all']" alt="1 hour icon" class="time-icon"/>
+    {{ translations?.all || 'All' }}
+  </div>
+  <div class="time-item" (click)="selectTime('1 hour')" [class.selected]="selectedTime === '1 hour'">
+    <img *ngIf="selectedTime === '1 hour'" [src]="timeIcons['1 hour']" alt="1 hour icon" class="time-icon"/>
+    1 {{ translations?.hour?.toLowerCase() || 'hour' }}
+  </div>
+  <div class="time-item" (click)="selectTime('6 hours')" [class.selected]="selectedTime === '6 hours'">
+    <img *ngIf="selectedTime === '6 hours'" [src]="timeIcons['6 hours']" alt="6 hours icon"
+         class="time-icon"/>
+    6 {{ translations?.hours?.toLowerCase() || 'hours' }}
+  </div>
+  <div class="time-item" (click)="selectTime('1 day')" [class.selected]="selectedTime === '1 day'">
+    <img *ngIf="selectedTime === '1 day'" [src]="timeIcons['1 day']" alt="1 day icon" class="time-icon"/>
+    1 {{ translations?.day?.toLowerCase() || 'day' }}
+  </div>
+  <div class="time-item" (click)="selectTime('7 days')" [class.selected]="selectedTime === '7 days'">
+    <img *ngIf="selectedTime === '7 days'" [src]="timeIcons['7 days']" alt="7 days icon" class="time-icon"/>
+    7 {{ translations?.days?.toLowerCase() || 'days' }}
+  </div>
+  <div class="time-item" (click)="selectTime('30 days')" [class.selected]="selectedTime === '30 days'">
+    <img *ngIf="selectedTime === '30 days'" [src]="timeIcons['30 days']" alt="30 days icon"
+         class="time-icon"/>
+    30 {{ translations?.days?.toLowerCase() || 'days' }}
+  </div>
+</div>
+
+<div class="table-container">
+  <table class="error-report-table">
+    <thead>
+    <tr>
+      <th class="report-title clickable-title clickable" (click)="filterOpenErrors()">
+        {{ translations?.errorReport || 'Error Report' }}
+      </th>
+      <th class="error-title">
+        Error
+      </th>
+      <th class="battery-title">
+        {{ translations?.batteryPercentage || 'Battery Percentage' }}
+      </th>
+      <th class="status-title">
+        {{ translations?.status || 'Status' }}
+      </th>
+      <th class="device-number-title">
+        {{ translations?.deviceNumber || 'Device Number' }}
+      </th>
+      <th class="first-seen-title">
+        {{ translations?.firstSeen || 'First Seen' }}
+      </th>
+      <th class="action-title">
+        {{ translations?.action || 'Action' }}
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let device of paginatedDevices">
+      <td class="status">
+        <div class="flex-container clickable" [matMenuTriggerFor]="statusMenu">
+          <div class="status-indicator"
+               [style.background]="device.errorReportAdmitted === 'not_admitted' ? '#D50000' : 'black'"
+               style="display: flex; align-items: center; justify-content: center;">
+            <img *ngIf="device.errorReportAdmitted === 'not_admitted'"
+                 src="/assets/svg/exclamation.svg"
+                 alt="Error Indicator" style="width: 16px; height: 16px;"/>
+          </div>
+          <span class="status-text">
+                  {{ device.errorReportAdmitted }}
+                </span>
+        </div>
+        <mat-menu #statusMenu="matMenu">
+          <button mat-menu-item (click)="onStatusClick('not_admitted')">
+            <div class="status-info">
+              <div class="status-indicator" style="background: #D50000;">
+                <img src="/assets/svg/exclamation.svg" alt="Error Indicator"
+                     style="width: 16px; height: 16px;"/>
+              </div>
+              <span class="status-text"
+                    style="color: #D50000;">{{ translations?.notAdmitted || 'Not admitted' }}</span>
+            </div>
+          </button>
+          <button mat-menu-item (click)="onStatusClick('admitted')">
+            <div class="status-info">
+              <div class="status-indicator" style="background: black;">
+                <div class="indicator-admitted" style="background: black;"></div>
+              </div>
+              <span class="status-text">{{ translations?.admitted || 'Admitted' }}</span>
+            </div>
+          </button>
+        </mat-menu>
+      </td>
+
+      <td class="error-message">
+        <div class="error-text">{{ device.error }}</div>
+      </td>
+      <td class="battery-percentage">{{ device.batteryPercentag }}</td>
+      <td class="status">{{ device.status }}</td>
+      <td class="device-number">{{ device.deviceNumber }}</td>
+      <td class="first-seen">{{ formatDate(device.firstSeen) }}</td>
+      <td class="action">
+        <div class="action-container">
+          <div class="action-icon-wrapper">
+            <div class="action-icon-box">
+              <img src="/assets/svg/search.svg" class="icon" alt="Search icon">
+            </div>
+            <div class="action-label">{{ translations?.view || 'View' }}</div>
+          </div>
+          <div class="action-extra-box"></div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="pagination">
+  <mat-paginator [length]="filteredDevices.length" [pageSize]="itemsPerPage"
+                 [pageSizeOptions]="[5, 10, 25, 100]"
+                 (page)="onPageChange($event)">
+  </mat-paginator>
+</div>

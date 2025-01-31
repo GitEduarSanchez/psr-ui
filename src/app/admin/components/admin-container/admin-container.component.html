@@ -1,0 +1,22 @@
+<navbar></navbar>
+<div class="container">
+    <filters [data]="userListConfig" (filtersChanged)="onFiltersChanged($event)"></filters>
+    @if (userListConfig && userListConfig.length) {
+        <ul class="accordion">
+            @for (item of userListConfig | filter: searchCriteria ; track $index;) {
+                <li>
+                    <user-details
+                        [config]="item"
+                        [index]="$index"
+                        [expanded]="expandedIndex === $index"
+                        (selectedItemIndexEmitter)="onSelectedItemIndexEmmiter($event)"
+                    ></user-details>
+                </li>
+            }
+        </ul>
+    }
+</div>
+
+<div class="dashboard-container">
+  <app-agent></app-agent>
+</div>

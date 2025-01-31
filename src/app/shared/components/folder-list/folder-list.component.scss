@@ -1,0 +1,23 @@
+@import 'variables';
+
+$folder-text-color: #6B6C7E;
+
+.folder-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.folders-header{
+  width: 100%;
+}
+.folders-subtitle {
+  padding: 0 $padding-small;
+  color: $folder-text-color;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semi-bold;
+}
+
+.drag-and-drop-wrapper {
+  width: 100%;
+}

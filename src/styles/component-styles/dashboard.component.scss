@@ -1,0 +1,10 @@
+@import 'variables';
+
+.custom-tab-header {
+  background-color: white;
+
+  @media (min-width: $max-width) {
+    padding-left: calc((100vw - ($max-width + $padding-medium)) / 2);
+    padding-right: calc((100vw - ($max-width + $padding-medium)) / 2);
+  }
+}

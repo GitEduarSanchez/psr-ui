@@ -1,0 +1,11 @@
+<div class="input-file-container">
+    <input class="input-file" type="file" id="input-file" (change)="onFileChange($event)" accept="image/png, image/jpeg, .pdf">
+    <label class="input-file-label" for="input-file">
+        <span class="input-file-name">
+            <span class="input-file-label-description"> {{fileLabel}} </span>
+        </span>
+        <span class="input-file-button">
+            <img src="assets/svg/attach.svg">
+        </span>
+    </label>
+</div>

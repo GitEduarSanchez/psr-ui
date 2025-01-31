@@ -1,0 +1,16 @@
+<div class="toggle-wrapper" [class.checked]="checked">
+    <label class="toggle-label">
+      <input
+        class="toggle-input"
+        type="checkbox"
+        [checked]="checked"
+        (change)="onToggle($event)"
+        [disabled]="disabled"
+      />
+      <span class="toggle-slider"></span>
+    </label>
+    @if(label) {
+        <span class="toggle-text">{{ label }}</span>
+    }
+</div>
+  

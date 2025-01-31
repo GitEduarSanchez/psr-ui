@@ -1,0 +1,42 @@
+@if (config) {
+    @switch (layoutType) {
+        @case (layoutTypeEnum.Resume) {
+            <!-- Template for Admin and Business layouts -->
+            <div class="user-information-resume-container">
+                <img class="user-details-image" src="/assets/svg/user-photo-icon.svg" alt="user information photo">
+                <div class="user-details-content">
+                    <div class="user-details-content-item">
+                        <span class="user-details-content-item-label">{{ translations?.name || 'Name' }}</span>
+                        <span class="user-details-content-item-value">{{config.person.name}}</span>
+                    </div>
+                    <div class="user-details-content-item">
+                        <span class="user-details-content-item-label">{{ translations?.number || 'Number' }}</span>
+                        <span class="user-details-content-item-value">{{config.person.phone}}</span>
+                    </div>
+                    <div class="user-details-content-item">
+                        <span class="user-details-content-item-label">{{ translations?.city || 'City' }}</span>
+                        <span class="user-details-content-item-value">{{selectedAdress ? selectedAdress.city : config.address[0].city}}</span>
+                    </div>
+                    <div class="user-details-content-item">
+                        <span class="user-details-content-item-label">{{ translations?.email || 'Email' }}</span>
+                        <span class="user-details-content-item-value">{{config.person.email}}</span>
+                    </div>
+                    <div class="user-details-content-item">
+                        <span class="user-details-content-item-label">Kdx</span>
+                        <span class="user-details-content-item-value">{{selectedAdress ? selectedAdress.kdx : config.address[0].kdx}}</span>
+                    </div>
+                </div>
+            </div>
+        }
+        @default {
+            <!-- Default Template -->
+            <div class="user-information-container">
+                <h3>Información del usuario</h3>
+                <p>Nombre: {{config.person.name}}</p>
+                <p>Correo: {{config.person.email}}</p>
+                <p>Teléfono: {{config.person.phone}}</p>
+                <p>Dirección: {{selectedAdress ? selectedAdress.city : config.address[0].city}}</p>
+            </div>
+        }
+    }
+}

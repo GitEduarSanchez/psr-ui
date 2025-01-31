@@ -1,0 +1,33 @@
+@import 'service-status-vars';
+
+.service-status-container {
+    text-align: center;
+    width: 100%;
+
+    .pill {
+        display: flex;
+        width: 100%;
+        align-items: center;
+
+        .pill-description {
+            font-size: $font-size-md;
+            font-weight: $font-weight-regular;
+        }
+
+        .led {
+            width: $led-size;
+            height: $led-size;
+            border-radius: 100%;
+            margin-left: $margin-medium
+        }
+
+        .led-light {
+            background-color: $led-light-inactive-color;
+            margin-right: 0.5rem;
+        }
+
+        .led-light.active {
+            background-color: $led-light-active-color;
+        }
+    }
+}

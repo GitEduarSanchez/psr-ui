@@ -1,0 +1,133 @@
+@import 'variables';
+
+.folder-sync-container {
+  padding: $padding-medium;
+}
+
+.folder-sync-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.folder-sync-content {
+  margin-top: $margin-medium;
+}
+
+.folder-sync-title {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semi-bold;
+  margin: 0;
+}
+
+.folder-sync-title-wrapper {
+  flex: 1;
+  text-align: center;
+}
+
+.folder-sync-item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: $padding-medium;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+}
+
+.folder-sync-item-info {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.folder-sync-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.folder-sync-item-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: $margin-small;
+}
+
+.folder-sync-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.folder-sync-name {
+  font-weight: $font-weight-semi-bold;
+  font-size: $font-size-sm;
+}
+
+.folder-sync-status {
+  font-size: $font-size-sm;
+  color: #555;
+}
+
+.folder-sync-item-progress {
+  width: 100%;
+}
+
+.folder-sync-progress-bar {
+  height: 8px;
+  background-color: green;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.folder-sync-close-btn {
+  background: none;
+  border: none;
+  font-size: $font-size-xxl;
+  cursor: pointer;
+}
+
+.folder-sync-google-drive {
+  width: 100%;
+  padding-top: $padding-medium;
+}
+
+.folder-sync-google-drive-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $padding-medium;
+}
+
+.folder-sync-google-item-details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.folder-sync-section-title {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semi-bold;
+  margin: 0;
+}
+
+.folder-sync-footer {
+  width: 100%;
+}
+
+.folder-sync-button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.folder-sync-button {
+  width: 10.5rem;
+  height: 2.5rem;
+  background-color: $primary-color;
+  color: $secondary-color;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+}

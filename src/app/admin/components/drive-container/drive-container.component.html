@@ -1,0 +1,70 @@
+<div class="drive-container">
+    <div class="sidebar-container">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-title">PSR</span>
+                <span class="logo-description">Poliedro Smart Reader</span>
+            </div>
+        </div>
+    
+        <button mat-button class="sidebar-add-button" [matMenuTriggerFor]="driveMenu">
+            <img src="assets/svg/plus-icon.svg" alt="plus icon">
+            <span class="sidebar-add-button-description"> New </span>
+        </button>
+        <mat-menu #driveMenu="matMenu">
+            <button class="menu-item" mat-menu-item (click)="handleMenuSelection(uploadTypeEnum.File)">Add files</button>
+            <button class="menu-item" mat-menu-item (click)="handleMenuSelection(uploadTypeEnum.Folder)">Add folder</button>
+            <button class="menu-item" mat-menu-item (click)="openNewFolderModal(createFolderTemplate)">Create new folder</button>
+        </mat-menu>
+    
+        @for (button of sidebarButtons; track $index) {
+            <button 
+                class="sidebar-button"
+                [class.side-bar-button-selected]="selectedRoute === button.route"
+                (click)="redirectTo(button.route)">
+                <img class="sidebar-button-icon" [src]="button.icon">
+                <span> {{button.label}}</span>
+            </button>
+        }
+    </div>
+    <div class="drive-section">
+        <nav class="drive-navbar">
+            <search
+            class="drive-search"
+            [data]="users"
+            (filteredResults)="updateFilteredResults($event)"
+            ></search>
+
+            <div class="drive-user-information">
+                <img class="drive-user-information-avatar" src="/assets/images/avatar-default.png" alt="">
+                <span class="drive-user-information-description">
+                    Goverment N de S
+                </span>
+            </div>
+        </nav>
+        <div class="drive-container-main-information">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+<ng-template #createFolderTemplate>
+    <div class="new-folder-container">
+        <h2>Create new Folder</h2>
+        <mat-form-field appearance="outline" class="new-folder-input">
+            <mat-label>Folder name</mat-label>
+            <input 
+                matInput 
+                type="text" 
+                placeholder="New folder"
+                [(ngModel)]="newFolderName"
+                #folderInput
+                (keydown.enter)="createFolder()">
+          </mat-form-field>
+
+          <div class="new-folder-actions">
+            <button mat-button (click)="closeNewFolderModal()">Cancel</button>
+            <button mat-raised-button color="primary" (click)="createFolder()">Create</button>
+          </div>
+    </div>
+</ng-template>

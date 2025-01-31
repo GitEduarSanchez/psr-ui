@@ -1,0 +1,74 @@
+<navbar></navbar>
+
+<div class="switches-container">
+    <h2>{{ translations?.services || 'Services' }}</h2>
+
+    <div class="switch"
+        [ngClass]="{ 'active': switches.valve === true, 'inactive': switches.valve === false, 'loading': switches.valve === null }">
+        <p class="switch-text">{{ translations?.valve || 'Valve' }}: <strong>{{ switches.valve === true ? (translations?.on || 'On') : switches.valve === false ? (translations?.off || (translations?.off || 'Off')) :
+                'Loading...' }}</strong></p>
+        <div class="toggle-container" (click)="toggleSwitch('valve')"
+            [ngClass]="{ 'active': switches.valve === true, 'inactive': switches.valve === false, 'loading': switches.valve === null }">
+            <div class="toggle-button"
+                [ngClass]="{ 'active': switches.valve === true, 'inactive': switches.valve === false }"></div>
+        </div>
+    </div>
+
+    <div class="switch"
+        [ngClass]="{ 'active': switches.solenoidValve === true, 'inactive': switches.solenoidValve === false, 'loading': switches.solenoidValve === null }">
+        <p class="switch-text">{{ translations?.electroValve || 'Electro valve' }}: <strong>{{ switches.solenoidValve === true ? (translations?.on || 'On') :
+                switches.solenoidValve === false ? (translations?.off || 'Off') : 'Loading...' }}</strong></p>
+        <div class="toggle-container" (click)="toggleSwitch('solenoidValve')"
+            [ngClass]="{ 'active': switches.solenoidValve === true, 'inactive': switches.solenoidValve === false, 'loading': switches.solenoidValve === null }">
+            <div class="toggle-button"
+                [ngClass]="{ 'active': switches.solenoidValve === true, 'inactive': switches.solenoidValve === false }">
+            </div>
+        </div>
+    </div>
+
+    <div class="switch"
+        [ngClass]="{ 'active': switches.bomb === true, 'inactive': switches.bomb === false, 'loading': switches.bomb === null }">
+        <p class="switch-text">{{ translations?.bomb || 'Bomb' }}: <strong>{{ switches.bomb === true ? (translations?.on || 'On') : switches.bomb === false ? (translations?.off || 'Off') :
+                'Loading...' }}</strong></p>
+        <div class="toggle-container" (click)="toggleSwitch('bomb')"
+            [ngClass]="{ 'active': switches.bomb === true, 'inactive': switches.bomb === false, 'loading': switches.bomb === null }">
+            <div class="toggle-button"
+                [ngClass]="{ 'active': switches.bomb === true, 'inactive': switches.bomb === false }"></div>
+        </div>
+    </div>
+
+    <div class="switch"
+        [ngClass]="{ 'active': switches.circuit === true, 'inactive': switches.circuit === false, 'loading': switches.circuit === null }">
+        <p class="switch-text">{{ translations?.circuit || 'Circuit' }}: <strong>{{ switches.circuit === true ? (translations?.on || 'On') : switches.circuit === false ? (translations?.off || 'Off')
+                : 'Loading...' }}</strong></p>
+        <div class="toggle-container" (click)="toggleSwitch('circuit')"
+            [ngClass]="{ 'active': switches.circuit === true, 'inactive': switches.circuit === false, 'loading': switches.circuit === null }">
+            <div class="toggle-button"
+                [ngClass]="{ 'active': switches.circuit === true, 'inactive': switches.circuit === false }"></div>
+        </div>
+    </div>
+
+    <div class="switch"
+        [ngClass]="{ 'active': switches.raspberry === true, 'inactive': switches.raspberry === false, 'loading': switches.raspberry === null }">
+        <p class="switch-text">Raspberry: <strong>{{ switches.raspberry === true ? (translations?.on || 'On') : switches.raspberry === false ?
+                (translations?.off || 'Off') : 'Loading...' }}</strong></p>
+        <div class="toggle-container" (click)="toggleSwitch('raspberry')"
+            [ngClass]="{ 'active': switches.raspberry === true, 'inactive': switches.raspberry === false, 'loading': switches.raspberry === null }">
+            <div class="toggle-button"
+                [ngClass]="{ 'active': switches.raspberry === true, 'inactive': switches.raspberry === false }"></div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <mat-card-footer class="login-form-footer">
+            <button mat-flat-button class="create-account-button" type="button" (click)="updateSwitches()"
+                [disabled]="!hasChanges()">
+                {{ translations?.updateChanges || 'Update Changes' }}
+            </button>
+        </mat-card-footer>
+    </div>
+</div>
+
+<div class="dashboard-container">
+  <app-agent></app-agent>
+</div>

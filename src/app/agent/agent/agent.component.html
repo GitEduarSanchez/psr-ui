@@ -1,0 +1,165 @@
+<div class="chat-container" [@toggleChat]="chatVisible ? 'visible' : 'hidden'">
+  <div class="chat-box">
+    <div class="chat-header" [ngClass]="{'show': isChatHeaderVisible}">
+      <button class="close-button" (click)="closeChat()">
+        <img class="profile-pic-header-closed" src="/assets/svg/icon-x.svg" alt=""/>
+      </button>
+      <div class="profile-container profile-container-header" [ngClass]="{'show': isChatHeaderVisible}">
+        <img class="profile-pic-header" src="/assets/images/avatar-2.jpg" alt=""/>
+        <div class="profile-info-header">
+          <div class="profile-name-header">Poli</div>
+          <div class="profile-role-header">{{ translations?.assistant || 'Assistant' }}</div>
+        </div>
+      </div>
+      <button class="clear-button" (click)="clearChat()">
+        <img class="svg-icon-clear" src="/assets/images/new-message.png" alt="Clear">
+      </button>
+    </div>
+    <div #chatArea class="chat-area" (scroll)="onScroll()">
+      <div class="profile-container">
+        <div class="profile-info">
+          <img class="profile-pic" src="/assets/images/avatar-2.jpg" alt=""/>
+          <div class="profile-name">Poli</div>
+          <div class="profile-role">{{ translations?.assistant || 'Assistant' }}</div>
+          <div class="chat-prompt" *ngIf="isChatPromptVisible">
+            {{ translations?.askAnythingToPoliAI || 'Ask anything to Poli AI' }}
+          </div>
+        </div>
+      </div>
+      <div *ngFor="let msg of messages; let i = index" class="message-wrapper">
+        <div class="user-message" *ngIf="msg.from === 'user'" [@messageAnimation]>
+          <div *ngIf="msg.fileName; else messageWithoutFile" class="unique-file-name-chat">
+            <div class="unique-file-name-container">
+              <div class="unique-file-content">
+                <img src="/assets/svg/document.svg" alt="File icon" class="unique-file-icon">
+                <div class="file-info-container">
+                  <div class="file-name-preview">
+                    {{ truncateFilename(msg.fileName) }}
+                  </div>
+                  <div class="file-type-label">File</div>
+                </div>
+              </div>
+            </div>
+            <div class="unique-extra-content">
+              {{ msg.content }}
+            </div>
+          </div>
+          <ng-template #messageWithoutFile>
+            <div class="message-box">{{ msg.content }}</div>
+          </ng-template>
+        </div>
+
+        <div class="assistant-message" *ngIf="msg.from === 'assistant'" [@messageAnimation]>
+          <div class="message-box-bot">
+            <ng-container *ngIf="msg.isLoading; else messageContent">
+              <div class="message-content-bot-typing">
+                <div class="typing-bubble">
+                  <div class="typing">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+          <ng-template #messageContent>
+            <div class="message-content-bot">{{ msg.content }}</div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <div class="name-scroll-container">
+      <button class="scroll-button left-arrow" (click)="scrollLeft()">
+        <img src="/assets/images/arrow.png" alt="Send" class="svg-icon">
+      </button>
+
+      <div class="name-display-container">
+        <div class="name-list" #nameLabels>
+          <div *ngFor="let suggestion of suggestions; let i = index" class="name-item"
+               (click)="selectSuggestion(suggestion.message)">
+            <div class="name-text">{{ suggestion.message }}</div>
+          </div>
+        </div>
+      </div>
+      <button class="scroll-button right-arrow" (click)="scrollRight()">
+        <img src="/assets/images/arrow.png" alt="Send" class="svg-icon rotate-right">
+      </button>
+    </div>
+
+    <div class="input-area">
+      <form (ngSubmit)="onSubmit()">
+        <div class="input-container">
+          <div class="input-height">
+            <div class="input-container-display">
+              <div *ngIf="file" class="file-name">
+                <div class="file-icon-container">
+                  <img src="/assets/svg/document.svg" alt="File icon" class="unique-file-icon">
+                </div>
+                <div class="file-content-container">
+                  <div class="file-content-description">{{ truncateFilename(file.name) }}</div>
+                  <div>File</div>
+                </div>
+                <div class="remove-file-button" (click)="removeFile()">
+                  <svg class="remove-file-icon" width="19" height="19" viewBox="0 0 19 19" fill="none"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M11.3389 9.50206L18.6829 1.93766C19.1775 1.42794 19.0835 0.680756 18.4712 0.268382C17.8589 -0.144783 16.9636 -0.0648408 16.469 0.444888L9.5067 7.61591L2.54435 0.444888C1.36624 -0.757407 -0.835244 0.727454 0.330526 1.93845L7.6745 9.50286L0.330526 17.0665C-0.164072 17.5762 -0.070089 18.3234 0.542225 18.7357C1.14979 19.1465 2.04785 19.0713 2.54435 18.5592L9.5067 11.3882L16.469 18.5592C16.9665 19.0713 17.8645 19.1465 18.4712 18.7357C19.0835 18.3234 19.1775 17.5754 18.6829 17.0665L11.3389 9.50206Z"
+                      fill="#ECECEC"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="input-with-file-upload">
+                <input [(ngModel)]="inputText" [ngModelOptions]="{ standalone: true }"
+                       [placeholder]="(translations?.writeAMessage || 'Write a message') + '...'"
+                       class="input-textarea" required/>
+                <input type="file" #fileInput id="file-input" (change)="onFileSelected($event)" accept=".pdf"
+                       class="file-input"/>
+                <div class="input-container-file-logo">
+                  <label class="svg-send-message" for="file-input">
+                    <img src="/assets/svg/upload-file.svg" alt="Upload file" class="svg-send-file"/>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" [disabled]="isGenerating" class="send-button" (click)="handleSubmitAction()">
+            <img *ngIf="(inputText.trim() || file) && !isGenerating; else callIcon" src="/assets/svg/send-message.svg"
+                 alt="Enviar" class="svg-send-message"/>
+            <ng-template #callIcon>
+              <img src="/assets/svg/voice-call.svg" alt="Llamar" class="svg-send-message"/>
+            </ng-template>
+          </button>
+
+          <div *ngIf="isVoiceCallActive" class="voice-call-interface">
+            <button class="end-call-button" (click)="endVoiceCall()">
+              <img class="end-call-button-svg" src="/assets/svg/small-left-arrow.svg" alt="small-left-arrow"/>
+            </button>
+            <iframe src="https://immutable-pixel-2a6fq6.sandbox.livekit.io" width="100%" height="100%" frameborder="0"
+                    allowfullscreen></iframe>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="user-profile-section">
+  <div class="profile-bubble poli-ai-profile" (click)="toggleChatVisibility()">
+    <img class="profile-background-image profile-rounded-image" src="/assets/images/avatar-2.jpg" alt="Background"/>
+    <div class="profile-info-text">
+      <span class="greeting-text">{{ translations?.helloIm || 'Hello, I am' }}<br/></span>
+      <span class="user-name">Poli</span>
+    </div>
+  </div>
+
+  <div class="profile-bubble whatsapp-profile" (click)="openWhatsApp()">
+    <img class="profile-background-image" src="/assets/svg/whatsapp.svg" alt="Background"/>
+    <div class="profile-info-text">
+      <span class="greeting-text">{{ translations?.poliIn || 'Poli en' }}<br/></span>
+      <span class="user-name">WhatsApp</span>
+    </div>
+  </div>
+</div>

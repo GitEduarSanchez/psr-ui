@@ -1,0 +1,456 @@
+@import './login-vars.scss';
+
+.container-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.content {
+    width: 1120px;
+    height: 720px;
+    border-radius: 3.75rem;
+    overflow: hidden;
+    position: fixed;
+    border: solid $border-color 0.1rem;
+    display: flex;
+    background-color: $secondary-color;
+    box-shadow: 0 0 0.625rem 0 $color-shadow;
+}
+
+.mat-icon {
+    width: auto;
+}
+
+.content-left {
+    width: 800px;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(76, 2, 176, 1) 0%, rgba(98, 0, 232, 1) 100%);
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    position: sticky;
+}
+
+.content-left-logo-position {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    left: 10%;
+}
+
+.content-left-logo {
+    width: 70%;
+    height: 70%;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+}
+
+.image-container {
+    width: 105%;
+    height: 105%;
+}
+
+.cloud-image {
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/svg/cloud.svg');
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.content-right {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    right: 0.5rem;
+    background-color: $secondary-color;
+}
+
+.content-right-position {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+
+.login-section {
+    text-align: left;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.login-content {
+    width: 100%;
+    padding: 3rem;
+    padding-left: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.welcome-text {
+    font-size: clamp(2rem, 0.97vi + 1.71rem, 2.88rem);
+    font-weight: 800;
+    margin-bottom: 3.75rem;
+    color: $tertiary-color;
+    font-family: 'Roboto Condensed', sans-serif;
+    line-height: 1.0;
+    text-align: center;
+}
+
+.login-text {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 0.625rem;
+    color: $text-color-secondary;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.country-select-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 3.5rem;
+}
+
+.country-flag {
+    position: relative;
+}
+
+select {
+    padding-right: 30px;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.arrow-down {
+    pointer-events: none;
+    color: #747775;
+    position: relative;
+    margin-left: 0.2rem;
+}
+
+.selected-flag {
+    display: flex;
+}
+
+.language-flag {
+    width: 24px;
+    height: 16px;
+}
+
+.login-form {
+    display: flex;
+}
+
+.login-form-field {
+    width: 100%;
+}
+
+.login-form-footer {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: end;
+}
+
+.create-account-button {
+    color: $primary-color !important;
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    border: none !important;
+    box-shadow: none !important;
+    margin-right: 2rem;
+
+    &:hover {
+        background-color: rgba(darken($primary-color, 10%), 0.1) !important;
+        color: $primary-color !important;
+    }
+}
+
+.login-button {
+    background-color: $primary-color !important;
+    color: $secondary-color !important;
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    border: none !important;
+    box-shadow: none !important;
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken($primary-color, 10%) !important;
+        color: $secondary-color !important;
+    }
+}
+
+.register-prompt {
+    font-size: 1rem;
+    color: $text-color-primary;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
+    margin-top: 1rem;
+    position: absolute;
+    bottom: 4em;
+    left: 0;
+    right: 0;
+    display: none;
+    cursor: pointer;
+}
+
+.sign-up-link {
+    color: $primary-color;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 0.278em;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.country-select-container {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+
+    &.mat-form-field {
+        border-radius: 4px;
+        transition: border-color 0.3s;
+
+        &.mat-focused {
+            border-color: #3f51b5;
+            box-shadow: 0 1px 5px rgba(63, 81, 181, 0.5);
+        }
+    }
+
+    .country-select-button {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        width: 100%;
+        border-radius: 3px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        border: solid 1px #9E9E9E;
+        margin-right: 0.2rem;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+    }
+
+    .selected-flag {
+        display: flex;
+        align-items: center;
+    }
+
+    .language-flag {
+        width: 24px;
+        height: 16px;
+    }
+
+}
+
+
+@media screen and (max-width: $max-width) {
+    .content {
+        width: 90%;
+        height: 640px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .content {
+        width: 90%;
+        height: 600px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        width: 100%;
+        flex-direction: column;
+        height: 100%;
+        border-radius: 0;
+        border: none;
+        overflow-y: scroll;
+        box-shadow: none;
+    }
+
+    .content-left {
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+    }
+
+    .content-left-logo-position {
+        position: relative;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        height: 100px;
+    }
+
+    .content-left-logo {
+        position: absolute;
+        top: 0;
+        width: 200px;
+        height: 200px;
+    }
+
+    .image-container {
+        height: 200px;
+    }
+
+    .cloud-image {
+        background-image: url('/assets/svg/cloud_h.svg');
+        background-position: bottom;
+    }
+
+    .content-right {
+        right: 0;
+        bottom: 0.5rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .content-right-position {
+        width: 70%;
+    }
+
+    .login-section {
+        display: block;
+        padding: 2em 0em;
+        height: 100%;
+    }
+
+    .welcome-text {
+        margin-bottom: 0.5em;
+    }
+
+    .login-text {
+        text-align: center;
+        margin-bottom: 2em;
+    }
+
+    .login-form-footer {
+        margin-top: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .login-button {
+        width: 100%;
+    }
+
+    .create-account-button {
+        display: none;
+    }
+
+    .register-prompt {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .content-left-logo-position {
+        height: 80px;
+    }
+
+    .create-account-button {
+        display: none;
+    }
+
+    .register-prompt {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .content-left-logo-position {
+        height: 60px;
+    }
+
+    .content-right-position {
+        width: 80%;
+    }
+
+    .create-account-button {
+        display: none;
+    }
+
+    .register-prompt {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .content-left-logo-position {
+        height: 40px;
+    }
+
+    .content-right-position {
+        width: 90%;
+    }
+
+    .register-prompt {
+        display: block;
+    }
+
+    .create-account-button {
+        display: none;
+    }
+}
+
+@media screen and (max-height: 680px) {
+    .register-prompt {
+        padding-top: 8em;
+        position: relative;
+        bottom: 0;
+    }
+}
+
+@media screen and (max-height: 768px) and (min-width: 768px) {
+    .content {
+        height: 90%;
+    }
+}
+
+@media screen and (width: 768px) {
+    .content {
+        height: 100%;
+    }
+}
+
+@media screen and (max-height: 480px) and (min-width: 768px) {
+    .content {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .content-left-logo-position {
+        height: 20px;
+    }
+
+    .create-account-button {
+        display: none;
+    }
+}

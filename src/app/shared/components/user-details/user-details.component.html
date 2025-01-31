@@ -1,0 +1,37 @@
+@if(config) {
+    <div class="user-details-container">
+        <div class="user-details-header">
+            <div class="user-details-information">
+                <user-information
+                    [config]="config"
+                    [selectedAdress]="selectedAddress ? selectedAddress : config.address[0]"
+                    [layoutType]="userInformationLayoutType.Resume">
+                </user-information>
+            </div>
+            <div class="user-details-service-items">
+                @for (item of (selectedAddress && selectedAddress.devices && selectedAddress.devices.length ? selectedAddress.devices : config.address[0].devices); track $index) {
+                    <measure
+                        [config]="item"
+                        [layoutType]="measureLayoutType.Resume"
+                        [isClientDashboard]="false">
+                    </measure>
+                }
+            </div>
+            <button class="user-details-toggle-button"
+                [class.expanded]="expanded"
+                (click)="toggleExpand(index)">
+                <img src="assets/svg/Vector.svg" alt="">
+            </button>
+        </div>
+        @if (config && expanded) {
+            <div class="user-details-content" [ngClass]="{'expanded': expanded }">
+                <dashboard
+                    [config]="config"
+                    [isExpanded]="expanded"
+                    [isClientDashboard]="false"
+                    (selectedAddressEmitter)="onSelectedAddressEmitter($event)">
+                </dashboard>
+            </div>
+        }
+    </div>
+}

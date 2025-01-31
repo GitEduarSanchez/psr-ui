@@ -1,0 +1,25 @@
+@import 'variables';
+
+// pin box
+@mixin pinBoxBorder($color : #909090) {
+    border: 2px solid $color
+}
+$pin-box-size: 3.75rem; // 60px
+$pin-box-margin: 0 $margin-small;
+$pin-box-border-radius: 8px;
+$pin-box-active-after-width: 2px;
+$pin-box-active-after-height: 1.25rem;
+$pin-box-text-color: #1d1c1c;
+
+// pin back button
+$pin-back-button-width: 2.813rem;
+
+// pin icon
+$pin-circle-container-size: 9rem;
+$pin-circle-container-size-before: 8.5rem;
+$pin-circle-container-size-after: 6rem;
+$pin-inner-circle-size: 5.625rem;
+$pin-icon-size: 4.5rem;
+
+$pin-circle-color-1: #DFF1FF;
+$pin-circle-color-2: #dff1ff80;

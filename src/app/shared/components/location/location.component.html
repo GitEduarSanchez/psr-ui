@@ -1,0 +1,50 @@
+@switch (role) {
+  @case (userRole.Client) {
+    <div class="location-container">
+      <h3 class="location-title">{{ translations?.locationOfDevices || 'Location' }}</h3>
+      <ng-container *ngTemplateOutlet="mapTemplate"/>
+    </div>
+  }
+  @case (userRole.Operator) {
+    <div class="location-operator-container">
+      <h1 class="devices-map-title">Devices Location</h1>
+      <ng-container *ngTemplateOutlet="mapTemplate"/>
+    </div>
+  }
+}
+ 
+
+<!-- Map template -->
+<ng-template #mapTemplate>
+    <google-map 
+        class="google-map"
+        [height]="getMapHeight()"
+        width="100%"
+        mapId="GoogleMapId"
+        [center]="markers && markers.length && markers[0].position 
+                  ? markers[0].position 
+                  : defaultPosition"
+        [zoom]="markers && markers.length ? 12 : 5"
+        [options]="mapOptions"
+        (mapClick)="openForm($event, locationFormTemplate)">
+        @if(markers && markers.length) {
+          @for (marker of markers; track $index) {
+              <map-advanced-marker
+                  #markerRef="mapAdvancedMarker"
+                  [position]="marker.position"
+                  (mapClick)="openInfoWindow(marker, markerRef)"/>
+              }
+  
+              <!-- Tooltip with marker information - Do not Remove -->
+              <map-info-window />
+        }
+    </google-map>
+</ng-template>
+
+<!-- Markers form template -->
+<ng-template #locationFormTemplate>
+  <psr-form 
+    [config]="markerFormConfig" 
+    (formDataEmitter)="onSubmit($event)"
+    (cancelEmitter)="closeForm()"/>
+</ng-template>

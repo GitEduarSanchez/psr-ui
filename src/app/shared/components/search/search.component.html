@@ -1,0 +1,12 @@
+<div class="search-container">
+    <input
+      class="search-input"
+      type="text"
+      [placeholder]="placeholder"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="onSearchChange($event)"
+    />
+    <button class="search-button">
+      <img src="/assets/svg/search-button-icon.svg">
+    </button>
+</div>

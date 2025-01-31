@@ -1,0 +1,38 @@
+<mat-card class="history-card" appearance="outlined">
+  <mat-card-header class="history-card-header">
+    <mat-card-title class="history-card-title">{{ translations?.history || 'History' }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="history-card-content">
+    <div class="history-graph-container">
+      <bar-chart-graph [config]="graphConfig"></bar-chart-graph>
+    </div>
+    <div class="history-table-container">
+      <table mat-table [dataSource]="dataSource">
+        <!-- Month Column -->
+        <ng-container matColumnDef="year">
+          <th mat-header-cell *matHeaderCellDef> {{ translations?.year || 'Year' }}</th>
+          <td mat-cell *matCellDef="let record"> {{record.year}} </td>
+        </ng-container>
+
+        <!-- Month Column -->
+        <ng-container matColumnDef="month">
+          <th mat-header-cell *matHeaderCellDef> {{ translations?.month || 'Month' }} </th>
+          <td mat-cell *matCellDef="let record"> {{record.month}} </td>
+        </ng-container>
+
+        <!-- Consumption Column -->
+        <ng-container matColumnDef="consumption">
+          <th mat-header-cell *matHeaderCellDef> {{ translations?.consumption || 'Consumption' }} </th>
+          <td mat-cell *matCellDef="let record"> {{record.reader}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <!-- Pagination controls -->
+      <mat-paginator class="history-paginator" [pageSizeOptions]="[5]" [hidePageSize]="true">
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

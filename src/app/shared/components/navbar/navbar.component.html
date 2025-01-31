@@ -1,0 +1,49 @@
+<div class="header-container" #headerContainer>
+    <header class="header">
+        <div class="logo">
+            <!-- TODO: El logo se definirá en el fututo -->
+            <!-- Main LOGO  -->
+            <span class="logo-title">PSR</span>
+            <span class="logo-description">Poliedro Smart Reader</span>
+        </div>
+
+        <!-- Links TEMPORAL -->
+        <div class="links">
+            <a [routerLink]="'/'">{{ translations?.client || 'Client' }}</a>
+            <a [routerLink]="'/admin'">{{ translations?.admin || 'Admin' }}</a>
+            <a [routerLink]="'/business'">{{ translations?.business || 'Business' }}</a>
+            <a [routerLink]="'/auth/login'">{{ translations?.login || 'Login' }}</a>
+            <a [routerLink]="'/auth/pin-confirmation'">{{ translations?.pinConfirmation || 'Pin confirmation' }}</a>
+            <a [routerLink]="'/auth/switch-control'">{{ translations?.switchControls || 'Switch controls' }}</a>
+            <a [routerLink]="'/auth/operations-dashboard'">{{ translations?.operationsDashboard || 'Operations Dashboard' }}</a>
+        </div>
+
+        <div class="language-selector-container">
+            <div class="language-select-wrapper">
+                <div class="selected-language-info" (click)="toggleDropdown()">
+                    <img [src]="getFlagImageUrl(selectedLanguage?.code)" alt="{{ selectedLanguage?.name }}"
+                        class="language-flag">
+                    <span class="language-code">{{ selectedLanguage?.tag }}</span>
+                </div>
+                <div *ngIf="dropdownOpen" class="dropdown-menu">
+                    <div class="dropdown-item" (click)="selectLanguage(language)"
+                        *ngFor="let language of getFilteredLanguages()">
+                        <img [src]="getFlagImageUrl(language.code)" alt="{{ language.tag }}" class="language-flag">
+                        <span class="language-code">{{ language.name }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button #profileButton class="login-button">
+            <img src="assets/images/account_circle.svg" alt="login imagen">
+        </button>
+    </header>
+</div>
+
+
+<!-- Login template popup -->
+<ng-template #loginTemplate>
+    <div class="login-dialog-wrapper">
+
+    </div>
+</ng-template>

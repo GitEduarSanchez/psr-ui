@@ -1,0 +1,17 @@
+<div class="folder-list-container">
+  <div class="folders-header">
+    <span class="folders-subtitle">Folders</span>
+  </div>
+  <div class="drag-and-drop-wrapper">
+    <drag-and-drop
+      [config]="{
+        itemType: dragAndDropItemType.Folder,  
+        folders: folders }"
+      (openEmitter)="onOpenFolder($event)"
+      (deleteEmitter)="onDeleteFolder($event)"
+      (uploadFilesEmmiter)="uploadFiles($event)">
+    </drag-and-drop>
+  </div>
+</div>
+
+

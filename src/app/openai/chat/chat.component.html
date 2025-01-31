@@ -1,0 +1,173 @@
+<!-- Modal Chat View -->
+<ng-container *ngIf="viewType === 'modalChat'">
+  <div class="chat-container" [@toggleChat]="chatVisible ? 'visible' : 'hidden'">
+    <div class="chat-box">
+      <div class="chat-header" [ngClass]="{'show': isChatHeaderVisible}">
+        <button class="close-button" (click)="closeChat()">
+          <img class="profile-pic-header-closed" src="/assets/svg/icon-x.svg" alt="" />
+        </button>
+        <div class="profile-container profile-container-header" [ngClass]="{'show': isChatHeaderVisible}">
+          <img class="profile-pic-header" src="/assets/images/avatar-2.jpg" alt="" />
+          <div class="profile-info-header">
+            <div class="profile-name-header">Poli</div>
+            <div class="profile-role-header">{{ translations?.assistant || 'Assistant' }}</div>
+          </div>
+        </div>
+        <button class="clear-button" (click)="clearChat()">
+          <img src="/assets/svg/new-message.svg" alt="Limpiar" class="svg-icon-clear">
+        </button>
+      </div>
+  
+      <div #chatArea class="chat-area" (scroll)="onScroll()">
+        <div class="profile-container">
+          <div class="profile-info">
+            <img class="profile-pic" src="/assets/images/avatar-2.jpg" alt="" />
+            <div class="profile-name">Poli</div>
+            <div class="profile-role">{{ translations?.assistant || 'Assistant' }}</div>
+            <div class="chat-prompt" *ngIf="isChatPromptVisible">
+              {{ translations?.askAnythingToPoliAI || 'Ask anything to Poli AI' }}
+            </div>
+          </div>
+        </div>
+  
+        <div *ngFor="let msg of messages; let i = index" class="message-wrapper">
+          <div class="user-message" *ngIf="msg.from === 'user'">
+            <div class="message-box">
+              <div>{{ msg.content }}</div>
+            </div>
+          </div>
+  
+          <div class="assistant-message" *ngIf="msg.from === 'assistant'">
+            <div class="message-box">
+              <ng-container *ngIf="msg.isLoading; else messageContent">
+                <div class="typing-bubble">
+                  <div class="typing">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-template #messageContent>
+                <div>{{ msg.content }}</div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+  
+      <div class="name-scroll-container">
+        <button class="scroll-button left-arrow" (click)="scrollLeft()">
+          <img src="/assets/images/arrow.png" alt="Enviar" class="svg-icon">
+        </button>
+  
+        <div class="name-display-container">
+          <div class="name-list" #nameLabels>
+            <div *ngFor="let suggestion of suggestions; let i = index" class="name-item"
+              (click)="selectSuggestion(suggestion.message)">
+              <div class="name-text">{{ suggestion.message }}</div>
+            </div>
+          </div>
+        </div>
+        <button class="scroll-button right-arrow" (click)="scrollRight()">
+          <img src="/assets/images/arrow.png" alt="Enviar" class="svg-icon rotate-right">
+        </button>
+      </div>
+  
+      <div class="input-area">
+        <div class="button-container">
+          <input [(ngModel)]="prompt"
+         [placeholder]="(translations?.writeAMessage || 'Write a message') + '...'"
+         class="input-textarea"
+         type="text"
+         (keydown.enter)="sendPrompt()" />
+  
+         <button (click)="sendPrompt()" [disabled]="isGenerating || !prompt.trim()" class="send-button">
+          <img src="/assets/images/send-message.png" alt="Enviar" class="svg-send-message">
+        </button>
+  
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="custom-profile-container" (click)="toggleChatVisibility()">
+    <img class="custom-background-image" src="/assets/images/avatar-2.jpg" alt="Background" />
+    <div class="custom-profile-info">
+      <span class="custom-greeting">{{ translations?.helloIm || 'Hello, I am' }}<br /></span>
+      <span class="custom-name">Poli</span>
+    </div>
+  </div>
+</ng-container>
+
+
+<!-- Full Chat View -->
+<ng-container *ngIf="viewType === 'fullChat'">
+  <div class="full-chat-container">
+    <div class="full-chat-header">
+      <button class="full-chat-header-back-button" (click)="goBack()"><img src="assets/svg/small-left-arrow-black.svg" alt="back button"></button>
+      <div class="full-chat-title">
+        <span class="full-chat-header-title">Folder: Acualia</span>
+      </div>
+      <button class="full-chat-header-new-message-button"><img src="/assets/svg/new-message.svg" alt="new chat button"></button>
+    </div>
+
+   
+    <div #chatArea class="full-chat-area" (scroll)="onScroll()">
+      <div class="profile-container">
+        <div class="profile-info">
+          <img class="profile-pic" src="/assets/images/avatar-2.jpg" alt="" />
+          <div class="profile-name">Poli</div>
+          <div class="profile-role">{{ translations?.assistant || 'Assistant' }}</div>
+          <div class="chat-prompt" *ngIf="isChatPromptVisible">
+            {{ translations?.askAnythingToPoliAI || 'Ask anything to Poli AI' }}
+          </div>
+        </div>
+      </div>
+
+      <div *ngFor="let msg of messages; let i = index" class="message-wrapper">
+        <div class="user-message" *ngIf="msg.from === 'user'">
+          <div class="message-box">
+            <div>{{ msg.content }}</div>
+          </div>
+        </div>
+
+        <div class="assistant-message" *ngIf="msg.from === 'assistant'">
+          <img src="/assets/images/avatar-2.png" alt="">
+          <div class="message-box">
+            <ng-container *ngIf="msg.isLoading; else messageContent">
+              <div class="typing-bubble">
+                <div class="typing">
+                  <div class="dot"></div>
+                  <div class="dot"></div>
+                  <div class="dot"></div>
+                </div>
+              </div>
+            </ng-container>
+            <ng-template #messageContent>
+              <div>{{ msg.content }}</div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="full-chat-input-container">
+        <input [(ngModel)]="prompt"
+                [placeholder]="(translations?.writeAMessage || 'Write a message') + '...'"
+                class="full-chat-input"
+                (keydown.enter)="sendPrompt()"/>
+
+        <button (click)="sendPrompt()" [disabled]="isGenerating || !prompt.trim()" class="full-chat-send-button">
+          <svg width="24" height="24" viewBox="0 0 24 24">
+            <path 
+              [attr.fill]="isGenerating || !prompt.trim() ? '#666666' : '#6200E8'"
+              d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z">
+            </path>
+          </svg>
+        </button>      
+    </div>
+  </div>
+</ng-container>

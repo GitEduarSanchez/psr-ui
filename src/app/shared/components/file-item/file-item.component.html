@@ -1,0 +1,39 @@
+<div class="file-list-item">
+    <!-- Icon -->
+     @if(config && config.icon) {
+      <div class="file-list-image-icon-wrapper">
+        <img [src]="config.icon" alt="icon" class="file-icon"/>
+      </div>
+     }
+  
+    <!-- File Details -->
+    <div class="file-details">
+      <div class="file-name">{{ config.name }}</div>
+    </div>
+  
+    <!-- Actions Menu -->
+    @if (config.matMenuActions) {
+      <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()" >
+          <mat-icon>more_vert</mat-icon>
+        </button> 
+        
+        <mat-menu #menu="matMenu">
+          @if (config.matMenuActions.showRename) {
+            <button mat-menu-item (click)="rename()">
+              <span>Rename</span>
+            </button>
+          }
+          @if (config.matMenuActions.showDelete) {
+            <button mat-menu-item (click)="delete(config.id)">
+              <span>Delete</span>
+            </button>
+          }
+          @if (config.matMenuActions.showGetInfo) {
+            <button mat-menu-item (click)="rename()">
+              <span>Get more info</span>
+            </button>
+          }      
+        </mat-menu>
+    }
+  </div>
+  

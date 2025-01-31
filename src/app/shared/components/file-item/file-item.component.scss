@@ -1,0 +1,25 @@
+@import 'variables';
+
+$file-list-item-height: 2.5rem;
+$file-list-icon-size: 2.5rem;
+
+.file-list-item {
+    background-color: $secondary-color;
+    padding: $padding-small;
+    display: grid;
+    grid-template-columns: 4rem 1fr 3rem;
+    align-items: center;
+    border-bottom: 1px solid $border-color;
+    font-weight: $font-weight-semi-bold;
+    font-size: $font-size-md;
+}
+
+.file-list-image-icon-wrapper {
+    width: $file-list-icon-size;
+    height: $file-list-icon-size;
+    border-radius: 50%;
+    background-color: #EADDFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

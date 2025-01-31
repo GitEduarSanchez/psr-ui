@@ -1,0 +1,11 @@
+<div class="file-list-container">
+    <div class="file-list-wrapper">
+        <drag-and-drop
+            [config]="{ 
+                itemType: dragAndDropItemType.File, 
+                files: files }"
+            (deleteEmitter)="onDeleteFile($event)"
+            (uploadFilesEmmiter)="uploadFiles($event)">
+        </drag-and-drop>
+    </div>
+</div>

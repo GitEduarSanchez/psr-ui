@@ -1,0 +1,183 @@
+@import 'measure-vars';
+
+.measure-card {
+  width: 100%;
+  padding: $padding-large;
+  border-radius: $border-radius-container;
+  height: 100%;
+}
+
+.measure-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $measure-card-title-margin-bottom;
+}
+
+.measure-card-title {
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-semi-bold;
+}
+
+.card-content-main {
+  width: 100%;
+  margin-top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progress-title {
+  font-size: 1.8rem;
+  font-weight: $font-weight-medium;
+  z-index: 1;
+}
+
+.progress-value {
+  position: relative;
+  font-size: $font-size-xxxl;
+  font-weight: $font-weight-semi-bold;
+  color: $circular-progress-text-color;
+  margin: 1.5rem 0;
+}
+
+.progress-value-resume {
+  color: #616161;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semi-bold;
+  margin: 0;
+  padding: 0.1rem;
+}
+
+.progress-description {
+  color: $circular-progress-text-color;
+  font-size: 1.5rem;
+  z-index: 1;
+}
+
+.progress-description-resume {
+  color: #616161;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-light;
+}
+
+.progress-title-resume {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: #616161;
+}
+
+.card-adicional-information {
+  width: 30%;
+}
+
+.last-measure-description,
+.last-measure-date {
+  display: flex;
+  flex-direction: column;
+}
+
+.last-measure-date {
+  margin-top: $margin-small;
+}
+
+.last-measure-description-title {
+  font-size: $font-size-xs;
+  color: $circular-progress-text-color;
+  font-weight: $font-weight-light;
+}
+
+.last-measure-description-value {
+  font-size: $font-size-sm;
+  color: $circular-progress-text-color;
+  font-weight: $font-weight-semi-bold;
+}
+
+.card-qr-image {
+  margin-top: $card-qr-image-margin-top;
+}
+
+
+
+.progress {
+  border-radius: 5mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.progress-circle {
+  fill: none;
+}
+
+
+.progress-bar {
+  transform: rotate(-90deg);
+
+  .progress-circle:nth-child(1) {
+    stroke: $circular-progress-empty-color;
+    stroke-width: 10px;
+  }
+
+  .progress-circle:nth-child(2) {
+    stroke: $primary-color;
+    stroke-dasharray: 330;
+    stroke-dashoffset: calc(200 - (200 * 90) / 100);
+    stroke-linecap: round;
+    stroke-width: 6px;
+    animation: progress 1s ease;
+  }
+}
+
+.progress-bar-resume {
+  width: 150px;
+  height: 150px;
+}
+
+.progress-bar-default {
+  width: 280px;
+  height: 280px;
+
+  .progress-circle:nth-child(1) {
+    stroke: $circular-progress-empty-color;
+  }
+
+  .progress-circle:nth-child(2) {
+    stroke: $primary-color;
+    stroke-dasharray: 700;
+    stroke-dashoffset: calc(300 - (300 * 90) / 100);
+    stroke-linecap: round;
+    stroke-width: 12px;
+    animation: progress 1s ease;
+  }
+}
+
+.progress-bar.active {
+  .progress-circle:nth-child(2) {
+    stroke: $circular-progress-active-color;
+  }
+}
+
+.progress-bar.inactive {
+  .progress-circle:nth-child(2) {
+    stroke: $circular-progress-inactive-color;
+  }
+}
+
+@keyframes progress {
+  from {
+    stroke-dashoffset: 300;
+  }
+}
+
+.progress-text-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

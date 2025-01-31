@@ -1,0 +1,46 @@
+<div class="drive-main-section">
+    <div class="folders-section">
+        <h1 class="drive-title">My Drive</h1>
+        <router-outlet></router-outlet>
+    </div>
+    <div class="providers-column">
+        <button class="provider-button" (click)="openGoogleModal(googleSignInTemplate)">
+            <img src="/assets/svg/google-drive-icon.svg">
+        </button>
+        <button class="provider-button">
+            <img src="/assets/images/dropbox.png">
+        </button>
+        <button class="provider-button">
+            <img src="/assets/images/onedrive.png">
+        </button>
+    </div>
+</div>
+
+<ng-template #googleSignInTemplate>
+    <div class="google-signin-container">
+        <div class="google-signin-header">
+            <h2 class="google-signin-title">Connect with Google Drive to share your files with IA</h2>
+        </div>
+
+        <div class="google-signin-content">
+            <span>
+                Inicia sesión con tu cuenta de Google para seleccionar y cargar archivos desde tu Drive. Estos archivos serán analizados y utilizados en el contexto de la aplicación de inteligencia artificial.
+            </span>
+        </div>
+
+        <div class="google-signin-footer">
+            <button class="google-signin-button" (click)="login()">
+                <img src="/assets/svg/google-drive-icon.svg">
+                <span>Connect with Google Drive</span>
+            </button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #folderSyncTemplate>
+    <folder-sync
+        [config]="folderSyncConfig"
+        (selectedFolderEmitter)="onSelectedFolder($event)"
+        (syncEmitter)="sendFoldersToSync()">
+    </folder-sync>
+</ng-template>

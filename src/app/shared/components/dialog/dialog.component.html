@@ -1,0 +1,34 @@
+<div class="dialog">
+    @if (data) {
+        @if(data.title) {
+            <div class="dialog-header">
+                <div class="dialog-close">
+                    <button class="dialog-close-button" (click)="onClose()">
+                        <img src="/assets/svg/Close-symbol.svg" alt="">
+                    </button>
+                </div>
+                <h2 mat-dialog-title>{{data.title}}</h2>
+            </div>
+        }
+    
+        <!-- Main Content  -->
+        <mat-dialog-content>
+            @if (data.contentTemplate) {
+                <ng-container *ngTemplateOutlet="data.contentTemplate;"></ng-container>
+            }
+            @else {
+                {{data.message}}
+            }
+        </mat-dialog-content>
+        @if (data.showConfirmButton || data.showCancelButton) {
+            <mat-dialog-actions align="center">
+                @if(data.showCancelButton) {
+                    <button mat-button mat-dialog-close (click)="onClose()">Cancel</button>
+                }
+                @if(data.showConfirmButton) {
+                    <button mat-button cdkFocusInitial (click)="onConfirm()">OK</button>
+                }
+            </mat-dialog-actions>
+        }
+    }
+</div>

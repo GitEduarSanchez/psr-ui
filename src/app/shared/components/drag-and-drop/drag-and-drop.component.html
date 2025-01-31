@@ -1,0 +1,79 @@
+<div class="drop-zone" 
+    [class.dragover]="isDragOver" 
+    (dragover)="onDragOver($event)" 
+    (dragleave)="onDragLeave()"
+    (drop)="onDrop($event)">
+    <div class="items-container">
+        @if (config.itemType === dragAndDropItemType.Folder && config.folders?.length) {
+            <div class="folder-grid">
+                @for (folder of config.folders; track $index) {
+                    <folder 
+                        [config]="folder" 
+                        (openFolderEmmiter)="onOpenFolder($event)"
+                        (deleteFolderEmmiter)="onDelete($event)"
+                    ></folder>
+                }
+            </div>
+        }
+        
+        @if (config.itemType === dragAndDropItemType.File && config.files?.length) {
+            <div class="files-list">
+                @for (file of config.files; track $index) {
+                    <file-item
+                    [config]="file"
+                    (deleteFolderEmmiter)="onDelete($event)"
+                    ></file-item>
+                }
+            </div>
+        }
+
+        <input 
+            #fileInput 
+            type="file" 
+            multiple 
+            hidden 
+            (change)="handleInputSelection($event)" 
+        />
+
+        <input 
+            #folderInput 
+            type="file" 
+            webkitdirectory 
+            multiple 
+            hidden 
+            (change)="handleInputSelection($event)" 
+        />
+    </div>
+</div>
+
+<div *ngIf="selectedFiles.length > 0" class="file-list">
+    <mat-card class="file-card" elevation="4">
+        <div cdkDropList [cdkDropListData]="selectedFiles">
+            @for (file of selectedFiles; track $index) {
+            <div class="file-item" cdkDrag>
+                <div class="file-list-image-icon-wrapper">
+                    <img class="file-list-image-icon" src="/assets/svg/drive-image-icon.svg">
+                </div>
+                <span>{{ file.name }}</span>
+                <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="removeFile($index)">
+                        <span>Delete</span>
+                    </button>
+                    <button mat-menu-item>
+                        <span>Retry</span>
+                    </button>
+                    <button mat-menu-item>
+                        <span>Cancel</span>
+                    </button>
+                </mat-menu>
+            </div>
+            }
+        </div>
+        <button mat-button mat-raised-button color="primary" (click)="uploadFiles()" class="upload-button">
+            Upload Files
+        </button>
+    </mat-card>
+</div>
